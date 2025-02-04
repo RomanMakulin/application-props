@@ -1,21 +1,5 @@
-spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/flm_project
-    username: postgres
-    password: 1
-    driver-class-name: org.postgresql.Driver
-  jpa:
-    hibernate:
-      ddl-auto: none
-    show-sql: true
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: http://localhost:8081/realms/demo
+server:
+  port: 8095
 
 # KEYCLOAK CONFIG
 keycloak:
@@ -33,5 +17,3 @@ keycloak:
     username: admin
     password: admin
 
-server:
-  port: 8095

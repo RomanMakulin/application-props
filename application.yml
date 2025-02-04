@@ -35,3 +35,27 @@ endpoints:
     cancelValidation: ${services.profile}/api/profile/cancel-validation
   minio:
     uploadFile: ${services.minio}/api/file/upload
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 100MB
+  datasource:
+    url: jdbc:postgresql://localhost:5432/flm_project
+    username: postgres
+    password: 1
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8081/realms/demo
+          jwk-set-uri: http://localhost:8081/realms/demo/protocol/openid-connect/certs
