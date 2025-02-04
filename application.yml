@@ -1,35 +1,37 @@
-# CORS CONFIG
-cors:
-  allowed-origins:
-    - http://localhost:8010 # Frontend
-    - http://localhost:8090 # Profile service
-    - http://localhost:8020 # Admin service
-    - http://localhost:8030 # MinIO service
-
-# SERVICES
+# Определение базовых URL сервисов
 services:
   notification: http://localhost:8087
   auth: http://localhost:8095
   frontend: http://localhost:8010
   profile: http://localhost:8090
-  admin-service: http://localhost:8020
-  minio-service: http://localhost:8030
+  admin: http://localhost:8020
+  minio: http://localhost:8030
 
-# SERVICES ENDPOINTS
-paths:
+# Конфигурация CORS: разрешённые источники берутся из свойств services
+cors:
+  allowed-origins:
+    - ${services.notification}  # notification service
+    - ${services.auth}          # auth service
+    - ${services.frontend}      # frontend service
+    - ${services.profile}       # profile service
+    - ${services.admin}         # admin service
+    - ${services.minio}         # minio service
+
+# Определение URL эндпоинтов для различных операций
+endpoints:
   notification:
-    send-mail: ${services.notification}/api/notification/send
-    public-send-mail: ${services.notification}/api/public-notification/send
+    sendMail: ${services.notification}/api/notification/send
+    publicSendMail: ${services.notification}/api/public-notification/send
   auth:
-    reset-request: ${services.auth}/api/auth/reset-password
-    verification-request: ${services.auth}/api/auth/verify-email
+    resetRequest: ${services.auth}/api/auth/reset-password
+    verificationRequest: ${services.auth}/api/auth/verify-email
   frontend:
-    reset-request: ${services.frontend}/reset-password
+    resetRequest: ${services.frontend}/reset-password
     login: ${services.frontend}/login
   profile:
-    get-all-profiles: ${services.profile}/api/profile
-    get-unverified-profiles: ${services.profile}/api/profile/unverified
-    verify-profile: ${services.profile}/api/profile/verify
-    cancel-validation: ${services.profile}/api/profile/cancel-validation
-  minio-service:
-    upload-file: ${services.minio-service}/api/file/upload
+    getAllProfiles: ${services.profile}/api/profile
+    getUnverifiedProfiles: ${services.profile}/api/profile/unverified
+    verifyProfile: ${services.profile}/api/profile/verify
+    cancelValidation: ${services.profile}/api/profile/cancel-validation
+  minio:
+    uploadFile: ${services.minio}/api/file/upload
