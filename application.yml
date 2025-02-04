@@ -22,7 +22,7 @@ cors:
     - ${services.tariff}
 
 # Определение URL эндпоинтов для различных операций
-endpoints:
+paths:
   notification:
     send-mail: ${services.notification}/api/notification/send      # Отправка почты
     public-send-mail: ${services.notification}/api/public-notification/send  # Публичная отправка почты
