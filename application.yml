@@ -24,21 +24,21 @@ cors:
 # Определение URL эндпоинтов для различных операций
 endpoints:
   notification:
-    sendMail: ${services.notification}/api/notification/send      # Отправка почты
-    publicSendMail: ${services.notification}/api/public-notification/send  # Публичная отправка почты
+    send-mail: ${services.notification}/api/notification/send      # Отправка почты
+    public-send-mail: ${services.notification}/api/public-notification/send  # Публичная отправка почты
   auth:
-    resetRequest: ${services.auth}/api/auth/reset-password         # Сброс пароля
-    verificationRequest: ${services.auth}/api/auth/verify-email    # Подтверждение email
+    reset-request: ${services.auth}/api/auth/reset-password         # Сброс пароля
+    verification-request: ${services.auth}/api/auth/verify-email    # Подтверждение email
   frontend:
     recovery-request: ${services.frontend}/password_recovery       # URL для сброса пароля во фронтенде
     login: ${services.frontend}/login                              # URL для авторизации
   profile:
-    getAllProfiles: ${services.profile}/api/profile                # Получение всех профилей
-    getUnverifiedProfiles: ${services.profile}/api/profile/unverified  # Непроверенные профили
-    verifyProfile: ${services.profile}/api/profile/verify          # Верификация профиля
-    cancelValidation: ${services.profile}/api/profile/cancel-validation  # Отмена валидации профиля
+    get-all-profiles: ${services.profile}/api/profile                # Получение всех профилей
+    get-unverified-profiles: ${services.profile}/api/profile/unverified  # Непроверенные профили
+    verify-profile: ${services.profile}/api/profile/verify          # Верификация профиля
+    cancel-validation: ${services.profile}/api/profile/cancel-validation  # Отмена валидации профиля
   minio:
-    uploadFile: ${services.minio}/api/file/upload                  # Загрузка файла в MinIO
+    upload-file: ${services.minio}/api/file/upload                  # Загрузка файла в MinIO
 
 # Настройки загрузки файлов
 spring:
