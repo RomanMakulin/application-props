@@ -7,6 +7,7 @@ services:
   admin: http://localhost:8020         # Админ-сервис
   minio: http://localhost:8030         # MinIO для хранения файлов
   cloud: http://localhost:8888         # Дополнительный облачный сервис для обеспечения общей конфигурации
+  tariff: http://localhost:8085        # Сервис тарифов
 
 # Конфигурация CORS: разрешённые источники берутся из свойств services
 cors:
@@ -18,6 +19,7 @@ cors:
     - ${services.admin}
     - ${services.minio}
     - ${services.cloud}
+    - ${services.tariff}
 
 # Определение URL эндпоинтов для различных операций
 endpoints:
