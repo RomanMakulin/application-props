@@ -8,4 +8,4 @@ minio:
   buckets:
     avatars: user-avatars
     files: user-files
-    templates: user-templates
+    templates: users-templates
