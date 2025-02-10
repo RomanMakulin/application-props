@@ -9,3 +9,5 @@ minio:
     avatars: user-avatars
     files: user-files
     templates: users-templates
+    passports: user-passports
+    diploms: user-diploms
