@@ -26,19 +26,46 @@ paths:
   notification:
     send-mail: ${services.notification}/api/notification/send      # Отправка почты
     public-send-mail: ${services.notification}/api/public-notification/send  # Публичная отправка почты
+    
   auth:
-    reset-request: ${services.auth}/api/auth/reset-password         # Сброс пароля
-    verification-request: ${services.auth}/api/auth/verify-email    # Подтверждение email
+    register: ${services.auth}/api/auth/register                  # Регистрация пользователя
+    login: ${services.auth}/api/auth/login                        # Аутентификация пользователя
+    verify-email: ${services.auth}/api/auth/verify-email/{userId} # Подтверждение email
+    reset-request: ${services.auth}/api/auth/reset-password/{email}  # Запрос на сброс пароля
+    reset-password: ${services.auth}/api/auth/reset-password      # Сброс пароля
+    
   frontend:
     recovery-request: ${services.frontend}/password_recovery       # URL для сброса пароля во фронтенде
     login: ${services.frontend}/login                              # URL для авторизации
+    
   profile:
     get-all-profiles: ${services.profile}/api/profile                # Получение всех профилей
     get-unverified-profiles: ${services.profile}/api/profile/unverified  # Непроверенные профили
     verify-profile: ${services.profile}/api/profile/verify          # Верификация профиля
     cancel-validation: ${services.profile}/api/profile/cancel-validation  # Отмена валидации профиля
+    
   minio:
-    upload-file: ${services.minio}/api/file/upload                  # Загрузка файла в MinIO
+    upload-all: ${services.minio}/api/files/upload-all                 # Загрузка всех файлов пользователя
+    upload-photo: ${services.minio}/api/files/upload-photo             # Загрузка фото
+    upload-passport: ${services.minio}/api/files/upload-passport       # Загрузка паспорта
+    upload-diplom: ${services.minio}/api/files/upload-diplom           # Загрузка диплома
+    upload-template: ${services.minio}/api/files/upload-template       # Загрузка шаблона
+    upload-file: ${services.minio}/api/files/upload-file               # Загрузка одного файла
+    upload-files: ${services.minio}/api/files/upload-files             # Загрузка нескольких файлов
+    
+    get-photo: ${services.minio}/api/files/get-photo                   # Получение фото
+    get-passport: ${services.minio}/api/files/get-passport             # Получение паспорта
+    get-diplom: ${services.minio}/api/files/get-diplom                 # Получение диплома
+    get-template: ${services.minio}/api/files/get-template             # Получение шаблона
+    get-file: ${services.minio}/api/files/get-file                     # Получение файла по пути
+    get-files: ${services.minio}/api/files/get-files                   # Получение списка файлов
+    
+    delete-photo: ${services.minio}/api/files/delete-photo             # Удаление фото
+    delete-passport: ${services.minio}/api/files/delete-passport       # Удаление паспорта
+    delete-diplom: ${services.minio}/api/files/delete-diplom           # Удаление диплома
+    delete-template: ${services.minio}/api/files/delete-template       # Удаление шаблона
+    delete-file: ${services.minio}/api/files/delete-file               # Удаление файла по пути
+    delete-file-list: ${services.minio}/api/files/delete-file-list     # Удаление списка файлов
 
 # Настройки загрузки файлов
 spring:
