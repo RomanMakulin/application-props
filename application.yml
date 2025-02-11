@@ -1,71 +1,73 @@
-# Определение базовых URL сервисов
-services:
-  notification: http://localhost:8087   # Сервис уведомлений
-  auth: http://localhost:8095          # Сервис аутентификации
-  frontend: http://localhost:8010      # Фронтенд
-  profile: http://localhost:8090       # Сервис профилей
-  admin: http://localhost:8020         # Админ-сервис
-  minio: http://localhost:8030         # MinIO для хранения файлов
-  cloud: http://localhost:8888         # Дополнительный облачный сервис для обеспечения общей конфигурации
-  tariff: http://localhost:8085        # Сервис тарифов
+app:
+  # Определение базовых URL сервисов
+  services:
+    notification: http://localhost:8087   # Сервис уведомлений
+    auth: http://localhost:8095          # Сервис аутентификации
+    frontend: http://localhost:8010      # Фронтенд
+    profile: http://localhost:8090       # Сервис профилей
+    admin: http://localhost:8020         # Админ-сервис
+    minio: http://localhost:8030         # MinIO для хранения файлов
+    cloud: http://localhost:8888         # Дополнительный облачный сервис для конфигурации
+    tariff: http://localhost:8085        # Сервис тарифов
 
-# Конфигурация CORS: разрешённые источники берутся из свойств services
-cors:
-  allowed-origins:
-    - ${services.notification}
-    - ${services.auth}
-    - ${services.frontend}
-    - ${services.profile}
-    - ${services.admin}
-    - ${services.minio}
-    - ${services.cloud}
-    - ${services.tariff}
+  # Конфигурация CORS: разрешённые источники берутся из свойств services
+  cors:
+    allowed-origins:
+      - ${app.services.notification}
+      - ${app.services.auth}
+      - ${app.services.frontend}
+      - ${app.services.profile}
+      - ${app.services.admin}
+      - ${app.services.minio}
+      - ${app.services.cloud}
+      - ${app.services.tariff}
 
-# Определение URL эндпоинтов для различных операций
-paths:
-  notification:
-    send-mail: ${services.notification}/api/notification/send      # Отправка почты
-    public-send-mail: ${services.notification}/api/public-notification/send  # Публичная отправка почты
-    
-  auth:
-    register: ${services.auth}/api/auth/register                  # Регистрация пользователя
-    login: ${services.auth}/api/auth/login                        # Аутентификация пользователя
-    verify-email: ${services.auth}/api/auth/verify-email/{userId} # Подтверждение email
-    reset-request: ${services.auth}/api/auth/reset-password/{email}  # Запрос на сброс пароля
-    reset-password: ${services.auth}/api/auth/reset-password      # Сброс пароля
-    
-  frontend:
-    recovery-request: ${services.frontend}/password_recovery       # URL для сброса пароля во фронтенде
-    login: ${services.frontend}/login                              # URL для авторизации
-    
-  profile:
-    get-all-profiles: ${services.profile}/api/profile                # Получение всех профилей
-    get-unverified-profiles: ${services.profile}/api/profile/unverified  # Непроверенные профили
-    verify-profile: ${services.profile}/api/profile/verify          # Верификация профиля
-    cancel-validation: ${services.profile}/api/profile/cancel-validation  # Отмена валидации профиля
-    
-  minio:
-    upload-all: ${services.minio}/api/files/upload-all                 # Загрузка всех файлов пользователя
-    upload-photo: ${services.minio}/api/files/upload-photo             # Загрузка фото
-    upload-passport: ${services.minio}/api/files/upload-passport       # Загрузка паспорта
-    upload-diplom: ${services.minio}/api/files/upload-diplom           # Загрузка диплома
-    upload-template: ${services.minio}/api/files/upload-template       # Загрузка шаблона
-    upload-file: ${services.minio}/api/files/upload-file               # Загрузка одного файла
-    upload-files: ${services.minio}/api/files/upload-files             # Загрузка нескольких файлов
-    
-    get-photo: ${services.minio}/api/files/get-photo                   # Получение фото
-    get-passport: ${services.minio}/api/files/get-passport             # Получение паспорта
-    get-diplom: ${services.minio}/api/files/get-diplom                 # Получение диплома
-    get-template: ${services.minio}/api/files/get-template             # Получение шаблона
-    get-file: ${services.minio}/api/files/get-file                     # Получение файла по пути
-    get-files: ${services.minio}/api/files/get-files                   # Получение списка файлов
-    
-    delete-photo: ${services.minio}/api/files/delete-photo             # Удаление фото
-    delete-passport: ${services.minio}/api/files/delete-passport       # Удаление паспорта
-    delete-diplom: ${services.minio}/api/files/delete-diplom           # Удаление диплома
-    delete-template: ${services.minio}/api/files/delete-template       # Удаление шаблона
-    delete-file: ${services.minio}/api/files/delete-file               # Удаление файла по пути
-    delete-file-list: ${services.minio}/api/files/delete-file-list     # Удаление списка файлов
+  # Определение URL эндпоинтов для различных операций
+  paths:
+    notification:
+      send-mail: ${app.services.notification}/api/notification/send
+      public-send-mail: ${app.services.notification}/api/public-notification/send
+
+    auth:
+      reset-request: ${services.auth}/api/auth/reset-password         # Сброс пароля
+      verification-request: ${services.auth}/api/auth/verify-email    # Подтверждение email
+      register: ${app.services.auth}/api/auth/register
+      login: ${app.services.auth}/api/auth/login
+      reset-password: ${app.services.auth}/api/auth/reset-password
+
+    frontend:
+      recovery-request: ${app.services.frontend}/password_recovery
+      login: ${app.services.frontend}/login
+
+    profile:
+      get-all-profiles: ${app.services.profile}/api/profile
+      get-unverified-profiles: ${app.services.profile}/api/profile/unverified
+      verify-profile: ${app.services.profile}/api/profile/verify
+      cancel-validation: ${app.services.profile}/api/profile/cancel-validation
+
+    minio:
+      upload-all: ${app.services.minio}/api/files/upload-all
+      upload-photo: ${app.services.minio}/api/files/upload-photo
+      upload-passport: ${app.services.minio}/api/files/upload-passport
+      upload-diplom: ${app.services.minio}/api/files/upload-diplom
+      upload-template: ${app.services.minio}/api/files/upload-template
+      upload-file: ${app.services.minio}/api/files/upload-file
+      upload-files: ${app.services.minio}/api/files/upload-files
+      
+      get-photo: ${app.services.minio}/api/files/get-photo
+      get-passport: ${app.services.minio}/api/files/get-passport
+      get-diplom: ${app.services.minio}/api/files/get-diplom
+      get-template: ${app.services.minio}/api/files/get-template
+      get-file: ${app.services.minio}/api/files/get-file
+      get-files: ${app.services.minio}/api/files/get-files
+      
+      delete-photo: ${app.services.minio}/api/files/delete-photo
+      delete-passport: ${app.services.minio}/api/files/delete-passport
+      delete-diplom: ${app.services.minio}/api/files/delete-diplom
+      delete-template: ${app.services.minio}/api/files/delete-template
+      delete-file: ${app.services.minio}/api/files/delete-file
+      delete-file-list: ${app.services.minio}/api/files/delete-file-list
+
 
 # Настройки загрузки файлов
 spring:
