@@ -44,6 +44,7 @@ app:
       get-unverified-profiles: ${app.services.profile}/api/profile/unverified
       verify-profile: ${app.services.profile}/api/profile/verify
       cancel-validation: ${app.services.profile}/api/profile/cancel-validation
+      get-profile: ${app.services.profile}/api/profile
 
     minio:
       upload-all: ${app.services.minio}/api/files/upload-all
