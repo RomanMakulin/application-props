@@ -29,8 +29,8 @@ app:
       public-send-mail: ${app.services.notification}/api/public-notification/send
 
     auth:
-      reset-request: ${services.auth}/api/auth/reset-password         # Сброс пароля
-      verification-request: ${services.auth}/api/auth/verify-email    # Подтверждение email
+      reset-request: ${app.services.auth}/api/auth/reset-password         # Сброс пароля
+      verification-request: ${app.services.auth}/api/auth/verify-email    # Подтверждение email
       register: ${app.services.auth}/api/auth/register
       login: ${app.services.auth}/api/auth/login
       reset-password: ${app.services.auth}/api/auth/reset-password
@@ -45,6 +45,7 @@ app:
       verify-profile: ${app.services.profile}/api/profile/verify
       cancel-validation: ${app.services.profile}/api/profile/cancel-validation
       get-profile: ${app.services.profile}/api/profile
+      update-plan: ${app.services.profile}/api/profile/update-plan
 
     minio:
       upload-all: ${app.services.minio}/api/files/upload-all
