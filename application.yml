@@ -46,6 +46,8 @@ app:
       cancel-validation: ${app.services.profile}/api/profile/cancel-validation
       get-profile: ${app.services.profile}/api/profile
       update-plan: ${app.services.profile}/api/profile/update-plan
+      get-by-profile-id: ${app.services.profile}/api/profile/get-by-profile-id
+      get-by-user-id: ${app.services.profile}/api/profile/get-by-user-id
 
     minio:
       upload-all: ${app.services.minio}/api/files/upload-all
