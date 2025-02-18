@@ -48,6 +48,7 @@ app:
       update-plan: ${app.services.profile}/api/profile/update-plan
       get-by-profile-id: ${app.services.profile}/api/profile/get-by-profile-id
       get-by-user-id: ${app.services.profile}/api/profile/get-by-user-id
+      delete-plan: ${app.services.profile}/api/profile/delete-plan
 
     minio:
       upload-all: ${app.services.minio}/api/files/upload-all
