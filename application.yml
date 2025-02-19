@@ -102,3 +102,10 @@ spring:
         jwt:
           issuer-uri: http://localhost:8081/realms/demo             # URI эмитента токенов
           jwk-set-uri: http://localhost:8081/realms/demo/protocol/openid-connect/certs  # URI для получения JWK
+
+# Логирование
+logging:
+  level:
+    root: DEBUG  # Включает DEBUG-логи для всего приложения
+    org.springframework: DEBUG  # Логирование Spring Boot
+    com.example: DEBUG  # Логирование твоего кода (замени на свой пакет)
