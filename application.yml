@@ -106,5 +106,5 @@ spring:
 # Логирование
 logging:
   level:
-    root: DEBUG  # Включает DEBUG-логи для всего приложения
+    sf4g: DEBUG  # Включает DEBUG-логи только для sf4g
 
